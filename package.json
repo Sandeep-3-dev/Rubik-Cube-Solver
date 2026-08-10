@@ -1,0 +1,24 @@
+{
+  "name": "rubik-cube-solver",
+  "version": "1.0.0",
+  "description": "Building.....",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sandeep-3-dev/Rubik-Cube-Solver.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Sandeep-3-dev/Rubik-Cube-Solver/issues"
+  },
+  "homepage": "https://github.com/Sandeep-3-dev/Rubik-Cube-Solver#readme",
+  "dependencies": {
+    "three": "^0.185.1"
+  }
+}
