@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    background: #1c1c1b;
+    overflow: hidden;
+}
+
+h1 {
+
+    margin: 0;
+      /* Tries Consolas first (Windows), then Monaco (Mac), then default monospace */
+  font-family: Georgia, "Times New Roman", Garamond, Times, serif;
+     display: inline;
+  padding:7px 30px;
+  font-variant: small-caps;
+  position:absolute;
+   left:50%;
+   top:2%;
+   transform: translate(-50%);
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    font-size: 250%;
+}
