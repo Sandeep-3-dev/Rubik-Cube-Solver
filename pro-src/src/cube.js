@@ -7,18 +7,15 @@ export function createCube() {
     const blackMaterial = new THREE.MeshStandardMaterial({
         color: 0x2e2e2d
     });
-
     const redMaterial = new THREE.MeshStandardMaterial({
         color: "red"
     });
     const orangeMaterial = new THREE.MeshStandardMaterial({
         color: "magenta"
     });
-
     const whiteMaterial = new THREE.MeshStandardMaterial({
         color: "white"
     });
-
     const yellowMaterial = new THREE.MeshStandardMaterial({
         color: "yellow"
     });
@@ -64,34 +61,25 @@ export function createCube() {
                 if (x === 1) {
                     cubieMaterials[0] = redMaterial;
                 }
-
                 if (x === -1) {
                     cubieMaterials[1] = orangeMaterial;
                 }
-
                 if (y === 1) {
                     cubieMaterials[2] = yellowMaterial;
                 }
-
                 if (y === -1) {
                     cubieMaterials[3] = whiteMaterial;
                 }
-
                 if (z === 1) {
                     cubieMaterials[4] = greenMaterial;
                 }
-
                 if (z === -1) {
                     cubieMaterials[5] = blueMaterial;
                 }
-
-
                 const cube = new THREE.Mesh(
                     geometry,
                     cubieMaterials
                 );
-
-
                 cube.position.set(
                     x * spacing,
                     y * spacing,
@@ -102,14 +90,11 @@ export function createCube() {
                     y:y,
                     z:z
                 }
-
                 const border = new THREE.LineSegments(
                     edges,
                     borderMaterial
                 );
-
                 cube.add(border);
-
                 rubiksCube.add(cube);
             }
         }

@@ -1,7 +1,7 @@
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     import { createCube } from './cube.js';
-    import { rotateRight,rotateFace,rotateTop } from './rotations.js';
+    import { rotate } from './rotations.js';
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(
@@ -70,6 +70,13 @@
     }
 
     animate();
-    rotateRight(rubik_cube);
-    rotateFace(rubik_cube);
-    rotateTop(rubik_cube);
+    rotate(rubik_cube,"L");
+    rotate(rubik_cube,"U");
+    rotate(rubik_cube,"F");
+    rotate(rubik_cube,"D");
+    rotate(rubik_cube,"R");
+    rotate(rubik_cube,"B");
+    
+
+    
+    

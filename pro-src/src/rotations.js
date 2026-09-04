@@ -1,79 +1,85 @@
 import * as THREE from 'three';
+export function rotate(rubik_cube,move){
+    let faces;
+    let group=new THREE.Group();
+    let direction;
+    if(move==="L"){
+        faces=rubik_cube.children.filter(cube=>cube.userData.x===-1);
+        direction=-1;
+    }
+    else if(move==="R"){
+         faces=rubik_cube.children.filter(cube=>cube.userData.x===1);
+          direction=1;
+    }
+    else if(move==="U"){
+         faces=rubik_cube.children.filter(cube=>cube.userData.y===1);
+         direction=1;
+    }
+    else if(move==="D"){
+         faces=rubik_cube.children.filter(cube=>cube.userData.y===-1);
+         direction=-1;
+    }
+    else if(move==="F"){
+         faces=rubik_cube.children.filter(cube=>cube.userData.z===1);
+          direction=1;
+    }
+    else if(move==="B"){
+         faces=rubik_cube.children.filter(cube=>cube.userData.z===-1);
+         direction=-1;
+    }
+    rubik_cube.add(group);
 
-export function rotateRight(rubik_cube){
+    faces.forEach(cube=>{
+        group.add(cube)
+    });
 
-    const face=rubik_cube.children.filter(cube=>{
-        return cube.userData.x===1
-    })
-    const rightgrp=new THREE.Group();
-    rubik_cube.add(rightgrp);
-
-    face.forEach(cube=>{
-        rightgrp.add(cube)
-    })
-    rightgrp.rotation.x=Math.PI/2;
-
-    const moveBack=[...rightgrp.children];
+    if(move==="L"||move==="R"){
+        group.rotation.x=direction*Math.PI/2;
+    }
+    else if(move==="U"||move==="D"){
+        group.rotation.y=direction*Math.PI/2;
+    }
+    else if(move==="F"||move==="B"){
+        group.rotation.z=direction*Math.PI/2;
+    }
+    const moveBack=[...group.children];
     
     moveBack.forEach(cube=>{
         const {x,y,z}=cube.userData;
+
         rubik_cube.attach(cube);
-        cube.userData.x=x;
-        cube.userData.y=-z;
-        cube.userData.z=y;
+
+        if(move==="L"){
+            cube.userData.x=x;
+            cube.userData.y=z;
+            cube.userData.z=-y;
+        }
+        else if(move==="R"){
+            cube.userData.x=x;
+            cube.userData.y=-z;
+            cube.userData.z=y;
+        }
+       else if(move==="U"){
+            cube.userData.x=z;
+            cube.userData.y=y;
+            cube.userData.z=-x;
+        }
+       else if(move==="D"){
+            cube.userData.x=-z;
+            cube.userData.y=y;
+            cube.userData.z=x;
+}
+        else if(move==="F"){
+            cube.userData.x=-y;
+            cube.userData.y=x;
+            cube.userData.z=z;
+}
+        else if(move==="B"){
+            cube.userData.x=y;
+            cube.userData.y=-x;
+            cube.userData.z=z;
+}
     })
-    rubik_cube.remove(rightgrp)
+    rubik_cube.remove(group)
 }
 
-export function rotateFace(rubik_cube){
-    const faces=rubik_cube.children.filter(cube=>{
-        return cube.userData.z===1
-    });
-
-    const facegrp=new THREE.Group();
-    rubik_cube.add(facegrp);
-
-    faces.forEach(cube=>{
-       facegrp.add(cube);
-    });
-    facegrp.rotation.z=Math.PI/2;
-
-    const moveBack = [...facegrp.children];
-
-    moveBack.children.forEach(cube=>{
-        const {x,y,z}=cube.userData;
-        rubik_cube.attach(cube);
-        cube.userData.x=y;
-        cube.userData.y=-x;
-        cube.userData.z=z;
-    })
-    rubik_cube.remove(facegrp);
-}
-
-export function rotateTop(rubik_cube){
-    const faces=rubik_cube.children.filter(cube=> cube.userData.y===1);
-
-    const topgrp=new THREE.Group();
-    rubik_cube.add(topgrp);
-
-    faces.forEach(cube=>{
-        topgrp.add(cube);
-    });
-
-    topgrp.rotation.y=Math.PI/2;
-
-    const moveBack=[...topgrp.children];
-
-    moveBack.forEach(cube=>{
-        const {x,y,z}=cube.userData;
-
-        rubik_cube.attach(cube);
-
-        cube.userData.x=-z;
-        cube.userData.y=y;
-        cube.userData.z=x;
-    });
-
-    rubik_cube.remove(topgrp);
-
-}
